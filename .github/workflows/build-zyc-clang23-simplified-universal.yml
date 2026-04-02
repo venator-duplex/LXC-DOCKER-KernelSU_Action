@@ -100,7 +100,6 @@ jobs:
         export PATH=$GITHUB_WORKSPACE/kernel_workspace/clang-zyc/bin:$PATH
         export KBUILD_BUILD_HOST=17
         export KBUILD_BUILD_USER=HyperPower
-        export ANDROID_MAJOR_VERSION=r
         make -s -j$(nproc --all) O=out ARCH=arm64 ${{ env.KERNEL_CONFIG }}
         if [ ${{env.LLVM_CONFIG}}=y ]; then
         make -j$(nproc --all) CC="ccache clang" CXX=clang++ O=out ARCH=arm64 CLANG_TRIPLE="aarch64-linux-gnu-" CROSS_COMPILE="aarch64-linux-gnu-" CROSS_COMPILE_ARM32="arm-linux-gnueabi-" LLVM=1 LLVM_IAS=1
