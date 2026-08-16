@@ -51,7 +51,11 @@ jobs:
         chmod 755 add-lxc-docker-custom3.sh
         ./add-lxc-docker-custom3.sh android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         echo "# CONFIG_ANDROID_PARANOID_NETWORK is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
-        curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s v0.9.5
+
+    - name: enable ksu
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace
+        curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s next
 
     - name: 添加runc补丁
       run: |
